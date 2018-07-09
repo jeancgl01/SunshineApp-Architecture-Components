@@ -31,7 +31,7 @@ data class WeatherEntry
  * @param wind Wind speed
  * @param degrees Wind direction
  */
-(val weatherIconId: Int, val date: Date, val min: Double, val max: Double, val humidity: Double, val pressure: Double, val wind: Double, val degrees: Double) {
+(var weatherIconId: Int, var date: Date, var min: Double, var max: Double, var humidity: Double, var pressure: Double, var wind: Double, var degrees: Double) {
 
-    val id: Int = 0
+    var id: Int = 0
 }
