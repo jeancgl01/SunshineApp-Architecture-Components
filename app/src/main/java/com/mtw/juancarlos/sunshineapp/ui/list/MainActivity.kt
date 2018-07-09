@@ -13,43 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mtw.juancarlos.sunshineapp.ui.list;
+package com.mtw.juancarlos.sunshineapp.ui.list
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.ProgressBar;
+import android.content.Intent
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.widget.ProgressBar
 
-import com.mtw.juancarlos.sunshineapp.R;
-import com.mtw.juancarlos.sunshineapp.ui.detail.DetailActivity;
+import com.mtw.juancarlos.sunshineapp.R
+import com.mtw.juancarlos.sunshineapp.ui.detail.DetailActivity
+import kotlinx.android.synthetic.main.activity_forecast.*
 
-import java.util.Date;
+import java.util.Date
 
 
 /**
  * Displays a list of the next 14 days of forecasts
  */
-public class MainActivity extends AppCompatActivity implements
-        ForecastAdapter.ForecastAdapterOnItemClickHandler {
+class MainActivity : AppCompatActivity(), ForecastAdapter.ForecastAdapterOnItemClickHandler {
 
-    private ForecastAdapter mForecastAdapter;
-    private RecyclerView mRecyclerView;
-    private int mPosition = RecyclerView.NO_POSITION;
-    private ProgressBar mLoadingIndicator;
+    private var mForecastAdapter: ForecastAdapter? = null
+    private val mPosition = RecyclerView.NO_POSITION
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forecast);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_forecast)
 
-        /*
-         * Using findViewById, we get a reference to our RecyclerView from xml. This allows us to
-         * do things like set the adapter of the RecyclerView and toggle the visibility.
-         */
-        mRecyclerView = findViewById(R.id.recyclerview_forecast);
 
         /*
          * The ProgressBar that will indicate to the user that we are loading data. It will be
@@ -58,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements
          * Please note: This so called "ProgressBar" isn't a bar by default. It is more of a
          * circle. We didn't make the rules (or the names of Views), we just follow them.
          */
-        mLoadingIndicator = findViewById(R.id.pb_loading_indicator);
 
         /*
          * A LinearLayoutManager is responsible for measuring and positioning item views within a
@@ -74,17 +65,16 @@ public class MainActivity extends AppCompatActivity implements
          * layout. Generally, this is only true with horizontal lists that need to support a
          * right-to-left layout.
          */
-        LinearLayoutManager layoutManager =
-                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         /* setLayoutManager associates the LayoutManager we created above with our RecyclerView */
-        mRecyclerView.setLayoutManager(layoutManager);
+        recyclerview_forecast.layoutManager = layoutManager
 
         /*
          * Use this setting to improve performance if you know that changes in content do not
          * change the child layout size in the RecyclerView
          */
-        mRecyclerView.setHasFixedSize(true);
+        recyclerview_forecast.setHasFixedSize(true)
 
         /*
          * The ForecastAdapter is responsible for linking our weather data with the Views that
@@ -96,11 +86,11 @@ public class MainActivity extends AppCompatActivity implements
          * MainActivity implements the ForecastAdapter ForecastOnClickHandler interface, "this"
          * is also an instance of that type of handler.
          */
-        mForecastAdapter = new ForecastAdapter(this, this);
+        mForecastAdapter = ForecastAdapter(this, this)
 
         /* Setting the adapter attaches it to the RecyclerView in our layout. */
-        mRecyclerView.setAdapter(mForecastAdapter);
-        showLoading();
+        recyclerview_forecast.adapter = mForecastAdapter
+        showLoading()
 
     }
 
@@ -109,39 +99,40 @@ public class MainActivity extends AppCompatActivity implements
      *
      * @param date Date of forecast
      */
-    @Override
-    public void onItemClick(Date date) {
-        Intent weatherDetailIntent = new Intent(MainActivity.this, DetailActivity.class);
-        long timestamp = date.getTime();
-        weatherDetailIntent.putExtra(DetailActivity.WEATHER_ID_EXTRA, timestamp);
-        startActivity(weatherDetailIntent);
+    override fun onItemClick(date: Date) {
+        val weatherDetailIntent = Intent(this@MainActivity, DetailActivity::class.java)
+        val timestamp = date.time
+        weatherDetailIntent.putExtra(DetailActivity.WEATHER_ID_EXTRA, timestamp)
+        startActivity(weatherDetailIntent)
     }
 
     /**
      * This method will make the View for the weather data visible and hide the error message and
      * loading indicator.
-     * <p>
+     *
+     *
      * Since it is okay to redundantly set the visibility of a View, we don't need to check whether
      * each view is currently visible or invisible.
      */
-    private void showWeatherDataView() {
+    private fun showWeatherDataView() {
         // First, hide the loading indicator
-        mLoadingIndicator.setVisibility(View.INVISIBLE);
+        pb_loading_indicator.visibility = View.INVISIBLE
         // Finally, make sure the weather data is visible
-        mRecyclerView.setVisibility(View.VISIBLE);
+        recyclerview_forecast.visibility = View.VISIBLE
     }
 
     /**
      * This method will make the loading indicator visible and hide the weather View and error
      * message.
-     * <p>
+     *
+     *
      * Since it is okay to redundantly set the visibility of a View, we don't need to check whether
      * each view is currently visible or invisible.
      */
-    private void showLoading() {
+    private fun showLoading() {
         // Then, hide the weather data
-        mRecyclerView.setVisibility(View.INVISIBLE);
+        recyclerview_forecast.visibility = View.INVISIBLE
         // Finally, show the loading indicator
-        mLoadingIndicator.setVisibility(View.VISIBLE);
+        pb_loading_indicator.visibility = View.VISIBLE
     }
 }

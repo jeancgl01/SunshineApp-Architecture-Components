@@ -14,25 +14,26 @@
 // * limitations under the License.
 // */
 //
-//package com.mtw.juancarlos.sunshineapp.data.database;
+//package com.mtw.juancarlos.sunshineapp.data.database
 //
-//import android.arch.persistence.room.TypeConverter;
+//import android.arch.persistence.room.TypeConverter
 //
-//import java.util.Date;
+//import java.util.Date
 //
 ///**
-// * {@link TypeConverter} for long to {@link Date}
-// * <p>
-// * This stores the date as a long in the database, but returns it as a {@link Date}
+// * [TypeConverter] for long to [Date]
+// *
+// *
+// * This stores the date as a long in the database, but returns it as a [Date]
 // */
 //class DateConverter {
 //    @TypeConverter
-//    public static Date toDate(Long timestamp) {
-//        return timestamp == null ? null : new Date(timestamp);
+//    fun toDate(timestamp: Long?): Date? {
+//        return if (timestamp == null) null else Date(timestamp)
 //    }
 //
 //    @TypeConverter
-//    public static Long toTimestamp(Date date) {
-//        return date == null ? null : date.getTime();
+//    fun toTimestamp(date: Date?): Long? {
+//        return date?.time
 //    }
 //}

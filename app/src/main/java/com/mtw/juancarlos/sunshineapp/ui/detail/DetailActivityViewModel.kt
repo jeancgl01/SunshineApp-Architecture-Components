@@ -14,29 +14,17 @@
 // * limitations under the License.
 // */
 //
-//package com.mtw.juancarlos.sunshineapp.ui.detail;
+//package com.mtw.juancarlos.sunshineapp.ui.detail
 //
-//import android.arch.lifecycle.ViewModel;
+//import android.arch.lifecycle.ViewModel
 //
-//import com.mtw.juancarlos.sunshineapp.data.database.WeatherEntry;
+//import com.mtw.juancarlos.sunshineapp.data.database.WeatherEntry
 //
 ///**
-// * {@link ViewModel} for {@link DetailActivity}
+// * [ViewModel] for [DetailActivity]
 // */
-//public class DetailActivityViewModel extends ViewModel {
+//class DetailActivityViewModel : ViewModel() {
 //
 //    // Weather forecast the user is looking at
-//    private WeatherEntry mWeather;
-//
-//    public DetailActivityViewModel() {
-//
-//    }
-//
-//    public WeatherEntry getWeather() {
-//        return mWeather;
-//    }
-//
-//    public void setWeather(WeatherEntry weatherEntry) {
-//        mWeather = weatherEntry;
-//    }
+//    var weather: WeatherEntry? = null
 //}

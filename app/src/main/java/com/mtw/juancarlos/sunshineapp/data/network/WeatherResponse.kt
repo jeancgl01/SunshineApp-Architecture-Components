@@ -13,25 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mtw.juancarlos.sunshineapp.data.network;
+package com.mtw.juancarlos.sunshineapp.data.network
 
-import android.support.annotation.NonNull;
-
-import com.mtw.juancarlos.sunshineapp.data.database.WeatherEntry;
+import com.mtw.juancarlos.sunshineapp.data.database.WeatherEntry
 
 /**
  * Weather response from the backend. Contains the weather forecasts.
  */
-class WeatherResponse {
-
-    @NonNull
-    private final WeatherEntry[] mWeatherForecast;
-
-    public WeatherResponse(@NonNull final WeatherEntry[] weatherForecast) {
-        mWeatherForecast = weatherForecast;
-    }
-
-    public WeatherEntry[] getWeatherForecast() {
-        return mWeatherForecast;
-    }
-}
+class WeatherResponse(val weatherForecast: Array<WeatherEntry?>)

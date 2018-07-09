@@ -14,26 +14,19 @@
 // * limitations under the License.
 // */
 //
-//package com.mtw.juancarlos.sunshineapp.ui.detail;
+//package com.mtw.juancarlos.sunshineapp.ui.detail
 //
-//import android.arch.lifecycle.ViewModel;
-//import android.arch.lifecycle.ViewModelProvider;
+//import android.arch.lifecycle.ViewModel
+//import android.arch.lifecycle.ViewModelProvider
 //
 ///**
 // * Factory method that allows us to create a ViewModel with a constructor that takes a
-// * {@link SunshineRepository} and an ID for the current {@link WeatherEntry}
+// * [SunshineRepository] and an ID for the current [WeatherEntry]
 // */
-//public class DetailViewModelFactory extends ViewModelProvider.NewInstanceFactory {
+//class DetailViewModelFactory(private val mRepository: SunshineRepository) : ViewModelProvider.NewInstanceFactory() {
 //
-//    private final SunshineRepository mRepository;
+//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
 //
-//    public DetailViewModelFactory(SunshineRepository repository) {
-//        this.mRepository = repository;
-//    }
-//
-//    @Override
-//    public <T extends ViewModel> T create(Class<T> modelClass) {
-//        //noinspection unchecked
-//        return (T) new DetailActivityViewModel(mRepository);
+//        return DetailActivityViewModel(mRepository) as T
 //    }
 //}
